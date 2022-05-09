@@ -16,8 +16,6 @@ public class EmployeeService {
     private final EmployeeRepository employeeRepository;
 
     public Employee addEmployee(Employee employee) {
-        employee.setName("John Doe");
-        employee.setJobTitle("Software Engineer");
         employee.setEmployeeCode(UUID.randomUUID().toString());
         return employeeRepository.save(employee);
     }
