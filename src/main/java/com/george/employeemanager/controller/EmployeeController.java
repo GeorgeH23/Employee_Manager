@@ -1,13 +1,12 @@
 package com.george.employeemanager.controller;
 
-import com.george.employeemanager.model.Employee;
+import com.george.employeemanager.domain.Employee;
+import com.george.employeemanager.model.EmployeeListDTO;
 import com.george.employeemanager.service.EmployeeService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/employee")
@@ -17,8 +16,8 @@ public class EmployeeController {
     private final EmployeeService employeeService;
 
     @GetMapping("/all")
-    public ResponseEntity<List<Employee>> getAllEmployees() {
-        List<Employee> employees = employeeService.findAllEmployees();
+    public ResponseEntity<EmployeeListDTO> getAllEmployees() {
+        EmployeeListDTO employees = employeeService.findAllEmployees();
         return new ResponseEntity<>(employees, HttpStatus.OK);
     }
 

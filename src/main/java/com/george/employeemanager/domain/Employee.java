@@ -1,4 +1,4 @@
-package com.george.employeemanager.model;
+package com.george.employeemanager.domain;
 
 import lombok.*;
 

@@ -1,6 +1,6 @@
 package com.george.employeemanager.repositoy;
 
-import com.george.employeemanager.model.Employee;
+import com.george.employeemanager.domain.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
