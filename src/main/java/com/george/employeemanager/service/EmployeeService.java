@@ -24,6 +24,7 @@ public class EmployeeService {
     private final EmployeeRepository employeeRepository;
 
     public EmployeeDTO addEmployee(EmployeeDTO employeeDTO) {
+        employeeDTO.setEmployeeCode(UUID.randomUUID().toString());
         return saveAndReturnDTO(employeeMapper.employeeDTOToEmployee(employeeDTO));
     }
 
@@ -36,8 +37,9 @@ public class EmployeeService {
         return new EmployeeListDTO(employeeDTOS);
     }
 
-    public Employee updateEmployee(Employee employee) {
-        return employeeRepository.save(employee);
+    public EmployeeDTO updateEmployee(EmployeeDTO employeeDTO) {
+        Employee employee = employeeMapper.employeeDTOToEmployee(employeeDTO);
+        return saveAndReturnDTO(employee);
     }
 
     public Employee findEmployeeById(Long id) {
@@ -50,9 +52,6 @@ public class EmployeeService {
     }
 
     private EmployeeDTO saveAndReturnDTO(Employee employee) {
-        if (employee.getEmployeeCode() == null) {
-            employee.setEmployeeCode(UUID.randomUUID().toString());
-        }
         Employee savedEmployee = employeeRepository.save(employee);
 
         return employeeMapper.employeeToEmployeeDTO(savedEmployee);
