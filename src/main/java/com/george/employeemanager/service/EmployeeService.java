@@ -23,9 +23,8 @@ public class EmployeeService {
     private final EmployeeMapper employeeMapper;
     private final EmployeeRepository employeeRepository;
 
-    public Employee addEmployee(Employee employee) {
-        employee.setEmployeeCode(UUID.randomUUID().toString());
-        return employeeRepository.save(employee);
+    public EmployeeDTO addEmployee(EmployeeDTO employeeDTO) {
+        return saveAndReturnDTO(employeeMapper.employeeDTOToEmployee(employeeDTO));
     }
 
     public EmployeeListDTO findAllEmployees() {
@@ -48,5 +47,14 @@ public class EmployeeService {
 
     public void deleteEmployee(Long id) {
         employeeRepository.deleteEmployeeById(id);
+    }
+
+    private EmployeeDTO saveAndReturnDTO(Employee employee) {
+        if (employee.getEmployeeCode() == null) {
+            employee.setEmployeeCode(UUID.randomUUID().toString());
+        }
+        Employee savedEmployee = employeeRepository.save(employee);
+
+        return employeeMapper.employeeToEmployeeDTO(savedEmployee);
     }
 }

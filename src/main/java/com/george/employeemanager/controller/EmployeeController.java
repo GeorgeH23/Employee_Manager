@@ -1,6 +1,7 @@
 package com.george.employeemanager.controller;
 
 import com.george.employeemanager.domain.Employee;
+import com.george.employeemanager.model.EmployeeDTO;
 import com.george.employeemanager.model.EmployeeListDTO;
 import com.george.employeemanager.service.EmployeeService;
 import lombok.AllArgsConstructor;
@@ -28,8 +29,8 @@ public class EmployeeController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Employee> addEmployee(@RequestBody Employee employee) {
-        Employee newEmployee = employeeService.addEmployee(employee);
+    public ResponseEntity<EmployeeDTO> addEmployee(@RequestBody EmployeeDTO employeeDTO) {
+        EmployeeDTO newEmployee = employeeService.addEmployee(employeeDTO);
         return new ResponseEntity<>(newEmployee, HttpStatus.CREATED);
     }
 
