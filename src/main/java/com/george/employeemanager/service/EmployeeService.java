@@ -42,9 +42,10 @@ public class EmployeeService {
         return saveAndReturnDTO(employee);
     }
 
-    public Employee findEmployeeById(Long id) {
+    public EmployeeDTO findEmployeeById(Long id) {
         return employeeRepository.findEmployeeById(id)
-                .orElseThrow(() -> new UserNotFoundException("User by id " + id + "was not found."));
+                .map(employeeMapper::employeeToEmployeeDTO)
+                .orElseThrow(() -> new UserNotFoundException("User by id " + id + " was not found."));
     }
 
     public void deleteEmployee(Long id) {

@@ -1,6 +1,5 @@
 package com.george.employeemanager.controller;
 
-import com.george.employeemanager.domain.Employee;
 import com.george.employeemanager.model.EmployeeDTO;
 import com.george.employeemanager.model.EmployeeListDTO;
 import com.george.employeemanager.service.EmployeeService;
@@ -23,9 +22,9 @@ public class EmployeeController {
     }
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<Employee> getAllEmployeeById(@PathVariable("id") Long id) {
-        Employee employee = employeeService.findEmployeeById(id);
-        return new ResponseEntity<>(employee, HttpStatus.OK);
+    public ResponseEntity<EmployeeDTO> getEmployeeById(@PathVariable("id") Long id) {
+        EmployeeDTO employeeDTO = employeeService.findEmployeeById(id);
+        return new ResponseEntity<>(employeeDTO, HttpStatus.OK);
     }
 
     @PostMapping("/add")
